@@ -2,33 +2,6 @@
 
 This project is a small Python wrapper around `opendataloader-pdf` for converting PDFs with the need of GPUs, including mathematical formulas into LaTeX.
 
-The main entry point is:
-
-```bash
-uv run convert.py file.pdf
-```
-
-## Fresh Install
-
-From a new machine or shell session where `.venv` does not exist yet and
-`opendataloader_pdf` is not installed, use these commands:
-
-```bash
-git clone <repo-url> pdfs
-cd pdfs
-brew install uv openjdk@17
-export JAVA_HOME="$(/usr/libexec/java_home -v 17)"
-export PATH="$JAVA_HOME/bin:$PATH"
-uv sync
-source .venv/bin/activate
-```
-
-If Java is already installed and on `PATH`, skip the `brew install` and
-`JAVA_HOME` lines.
-
-`uv sync` creates `.venv` and installs the `opendataloader-pdf` Python package
-that provides `opendataloader_pdf`.
-
 This script:
 
 - Starts the hybrid backend automatically.
@@ -43,15 +16,6 @@ This script:
 - Python 3.10+
 - `uv`
 - Java 11+
-- The `opendataloader-pdf` dependency installed through the project environment
-
-If you are working inside the repo directly, activate the local environment first when needed:
-
-```bash
-source .venv/bin/activate
-```
-
-With `uv`, you can usually skip manual activation and run the script directly.
 
 ## Quick Start
 
@@ -94,17 +58,9 @@ When you run `convert.py`, it performs these steps:
    - `hybrid_fallback=True` by default
 5. Shuts the backend down after the conversion completes.
 
-## Formula Enrichment
+## Converting Mathematical Formula to LaTeX
 
-Formula enrichment is enabled by default:
-
-```bash
-uv run convert.py file.pdf
-```
-
-Use `--no-enrich-formula` if you want to turn it off.
-
-This matters because formula extraction runs on the backend, not in the local Java-only path.
+This is enabled by default. Use `--no-enrich-formula` if you want to turn it off.
 
 ## Command-Line Options
 
@@ -119,44 +75,11 @@ This matters because formula extraction runs on the backend, not in the local Ja
 
 ### Hybrid options
 
-- `--enrich-formula`: Enable formula enrichment on the backend. Default: on.
 - `--no-enrich-formula`: Disable formula enrichment.
 - `--hybrid-timeout`: Hybrid backend read timeout in milliseconds. Default: `180000`.
 - `--hybrid-fallback`: Enable Java fallback if the hybrid backend fails. This is on by default.
 - `--no-hybrid-fallback`: Disable Java fallback.
 - `--backend-startup-timeout`: Seconds to wait for the backend health check. Default: `120`.
-
-## More examples
-
-Convert one PDF without formula enrichment:
-
-```bash
-uv run convert.py --no-enrich-formula file.pdf
-```
-
-Convert several PDFs with formula enrichment:
-
-```bash
-uv run convert.py file1.pdf file2.pdf file3.pdf
-```
-
-Convert a folder:
-
-```bash
-uv run convert.py papers/
-```
-
-Use a longer read timeout for large or slow documents:
-
-```bash
-uv run convert.py --hybrid-timeout 300000 file.pdf
-```
-
-Disable fallback if you want failures to stop immediately:
-
-```bash
-uv run convert.py --no-hybrid-fallback file.pdf
-```
 
 ## Troubleshooting
 
