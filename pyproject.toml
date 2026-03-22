@@ -4,5 +4,10 @@ version = "0.1.0"
 description = "Command-line helper for converting PDFs with OpenDataLoader PDF."
 requires-python = ">=3.10"
 dependencies = [
-    "opendataloader-pdf>=2.0.2,<3",
+    "opendataloader-pdf",
+    "uvicorn",
+    "docling",
+    "fastapi",
+    "python-multipart",
+    "easyocr",
 ]

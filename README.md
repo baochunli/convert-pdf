@@ -11,13 +11,16 @@ This script:
 - Uses Java fallback by default if the hybrid backend fails.
 - Stops the backend when the conversion finishes or errors out.
 
-## Requirements
-
-- Python 3.10+
-- `uv`
-- Java 11+
-
 ## Quick Start
+
+To prepare the Python virtual environment:
+
+```bash
+cd convert-pdf
+uv sync
+source .venv/bin/activate
+uv run jar-install.py
+```
 
 Run a single PDF:
 
