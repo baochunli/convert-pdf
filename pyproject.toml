@@ -1,7 +1,7 @@
 [project]
 name = "pdf-convert"
 version = "0.1.0"
-description = "Command-line helper for converting PDFs with OpenDataLoader PDF."
+description = "Setting up the virtual environment for converting PDFs with Apple Silicon GPUs."
 requires-python = ">=3.13"
 dependencies = [
     "docling",
